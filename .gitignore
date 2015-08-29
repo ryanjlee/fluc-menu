@@ -1,0 +1,11 @@
+### node etc ###
+
+#OS-Specific
+.DS_Store
+
+# Compiled Dirs
+build/
+
+# Dependency directorys
+node_modules/
+bower_components/
