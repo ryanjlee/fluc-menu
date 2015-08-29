@@ -36,10 +36,15 @@ var App = React.createClass({
     this.setState({checkoutData: data, total: total})
   },
 
+  handleCheckout: function() {
+    localStorage.clear();
+    this.setState({checkoutData: {}, total: 0});
+  },
+
   render: function() {
     return (
       <div className='app'>
-        <Checkout checkoutData={this.state.checkoutData} total={this.state.total} />
+        <Checkout checkoutData={this.state.checkoutData} total={this.state.total} onCheckout={this.handleCheckout} />
         <Menu food={this.props.food} onItemSubmit={this.handleItemSubmit} />
       </div>
     );
@@ -58,7 +63,7 @@ var Menu = React.createClass({
     });
     return (
       <div className='menu'>
-        <h1>Restaurant Menu</h1>
+        <h1>The Fluc Restaurant Menu</h1>
         <div className='itemList'> {items} </div>
       </div>
     );
@@ -96,6 +101,7 @@ var Item = React.createClass({
 var Checkout = React.createClass({
   handleClick: function() {
     alert('Fluc yeah!')
+    this.props.onCheckout();
   },
 
   render: function() {
