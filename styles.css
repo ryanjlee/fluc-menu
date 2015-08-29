@@ -1,14 +1,16 @@
 div {
   box-sizing: border-box;
-  border: 1px solid black;
+}
+
+.app {
+  position: relative;
 }
 
 .menu {
-  display: inline-block;
-  top: 0px;
   width: 80%;
   background-color: #F5F5EE;
   border: 1px solid black;
+  padding: 0px 0px 40px 40px;
   border-radius: 5px;
   margin-bottom: 20px;
 }
@@ -44,8 +46,26 @@ h1 {
 }
 
 .checkout {
-  display: inline-block;
-  top: 0px;
+  position: absolute;
+  right: 0px;
   width: 20%;
   height: 200px;
+}
+
+.checkout h3 {
+  text-align: center;
+}
+
+.checkout ul {
+  padding-left: 20px;
+  height: 100px;
+}
+
+.checkout input {
+  float:right;
+  clear:both;
+}
+
+.checkout li {
+  list-style-type: none;
 }
