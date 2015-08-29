@@ -9,7 +9,7 @@ Install the command line tools
 npm install -g react-tools
 ```
 
-Then translate jsx file in js
+Then translate the jsx file to js
 
 ```sh
 jsx src/ build/
