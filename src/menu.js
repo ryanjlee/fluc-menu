@@ -7,14 +7,24 @@ var food = [
 ]
 
 var App = React.createClass({
+  getInitialState: function() {
+      return {checkoutData: {}, total: 0};
+  },
   handleItemSubmit: function(food, quantity) {
-    console.log(food, quantity);
+    var data = this.state.checkoutData;
+    var total = this.state.total;
+    
+    if (!data[food]) data[food] = 0;
+    data[food] += parseInt(quantity);
+    total += parseInt(quantity);
+
+    this.setState({checkoutData: data, total: total})
   },
   render: function() {
     return (
       <div>
         <Menu food={this.props.food} onItemSubmit={this.handleItemSubmit} />
-        <Checkout />
+        <Checkout checkoutData={this.state.checkoutData} total={this.state.total} />
       </div>
     );
   }
@@ -22,13 +32,14 @@ var App = React.createClass({
 
 var Menu = React.createClass({
   handleItemSubmit: function(food, quantity) {
-    console.log(food, quantity);
+    this.props.onItemSubmit(food, quantity);
   },
   render: function() {
     var context = this;
     var items = this.props.food.map(function (entree) {
       return <Item food={entree[0]} description={entree[1]} onItemSubmit={context.handleItemSubmit} />;
     });
+    console.log(items);
     return (
       <div className='menu'>
         <h1>Restaurant Menu</h1>
@@ -67,43 +78,31 @@ var Item = React.createClass({
 
 var Checkout = React.createClass({
   render: function() {
-    return <div></div>;
+    return (
+      <div className='checkout'>
+        <h3>Cart - {this.props.total} items</h3>
+        <CartItem checkoutData = {this.props.checkoutData}/>
+      </div>
+    );
   }
 });
 
-// var ItemList = React.createClass({
-//   handleSubmit: function(e) {
-//     e.preventDefault();
-//     var food = this.props.food;
-//     var quantity = React.findDOMNode(this.refs.quantity).value;
-//     this.props.onItemSubmit(food, quantity);
-//     React.findDOMNode(this.refs.quantity).value = '1';
-//     return;
-//   },
-//   render: function() {
-//     var context = this;
-//     var items = this.props.food.map(function (item) {
-//       return (
-//         <div className='item'>
-//           <div className='foodDescription'>
-//             <h3>{item[0]}</h3>
-//             <p>{item[1]}</p>
-//           </div>
-//           <div className='addToCart'>
-//             <form className='updateForm' onSubmit={context.handleSubmit}>
-//               <input className='inputBox' type='number' defaultValue='1' ref='quantity' />
-//               <input type='submit' value='Add to cart' />
-//             </form>
-//           </div>
-//         </div>
-//       );
-//     });
-//     return <div> {items} </div>;
-//   }  
-// });
+var CartItem = React.createClass({
+  render: function() {
+    var cartItemNodes = [];
+    var data = this.props.checkoutData;
+    for (var key in data) {
+      cartItemNodes.push(<li>{data[key]} {key}</li>);
+    }
+    console.log(cartItemNodes);
+    return (<ul> {cartItemNodes} </ul>
+    );
+  }
+});
 
 
 React.render(
   <App food={food} />,
   document.getElementById('App')
 );
+

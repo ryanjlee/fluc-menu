@@ -4,11 +4,13 @@ div {
 }
 
 .menu {
+  display: inline-block;
+  top: 0px;
   width: 80%;
-  height: 600px;
   background-color: #F5F5EE;
   border: 1px solid black;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -39,4 +41,11 @@ h1 {
 
 .inputBox {
   width: 20%;
+}
+
+.checkout {
+  display: inline-block;
+  top: 0px;
+  width: 20%;
+  height: 200px;
 }
