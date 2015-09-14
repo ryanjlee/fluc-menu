@@ -44,8 +44,8 @@ var App = React.createClass({
   render: function() {
     return (
       <div className='app'>
-        <Checkout checkoutData={this.state.checkoutData} total={this.state.total} onCheckout={this.handleCheckout} />
         <Menu food={this.props.food} onItemSubmit={this.handleItemSubmit} />
+        <Checkout checkoutData={this.state.checkoutData} total={this.state.total} onCheckout={this.handleCheckout} />
       </div>
     );
   }

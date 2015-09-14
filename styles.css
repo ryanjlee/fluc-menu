@@ -55,6 +55,7 @@ h1 {
 .checkout {
   position: absolute;
   right: 0px;
+  top: 0px;
   width: 20%;
   height: 200px;
   margin: auto 1%;
